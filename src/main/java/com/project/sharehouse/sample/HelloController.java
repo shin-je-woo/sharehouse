@@ -8,9 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @GetMapping("/hello")
+    @GetMapping("/api/hello")
     public String hello() {
         log.info("헬로~~컨트롤러");
+        return "성공입니다.";
+    }
+
+    @GetMapping("/commons/hello")
+    public String hello2() {
+        log.info("헬로2~~컨트롤러");
         return "성공입니다.";
     }
 
