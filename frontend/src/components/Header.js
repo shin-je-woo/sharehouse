@@ -2,7 +2,9 @@
 
 import React, { useState } from "react";
 import "../css/Header.css";
-import { Dropdown, Menu,Grid } from 'semantic-ui-react'
+import logo from "../images/shareHouseLogo.jpg";
+import { Link, useNavigate } from 'react-router-dom';
+import { Dropdown, Menu } from 'semantic-ui-react'
 
 
 
@@ -20,12 +22,21 @@ function Header() {
         { key: 4, text: '무악재', value: 4 },
     ]
     const [selectedOption, setSelectedOption] = useState(dropdownOptions[0]);
+
+    const navigate  = useNavigate();
+
+    function handleLogoClick() {
+        navigate("/Logo");
+    }
     function handleDropdownChange(selected) {
         setSelectedOption(selected);
     }
 
     return (
-        <Menu pointing secondary>
+        <Menu  converted style={{ fontFamily: 'TheJamsil5Bold' }}   >
+            <Link to="/" className="logo" onClick={handleLogoClick}>
+                <img src={logo} alt="Logo" position='left' style={{ marginRight: '1.5em' }} />
+            </Link>
             <Menu.Item
                 name='블랑 소개'
                 active={activeItem === 'introduce'}
