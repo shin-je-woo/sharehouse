@@ -3,13 +3,13 @@ package com.project.sharehouse.domain;
 import com.project.sharehouse.domain.common.Address;
 import com.project.sharehouse.domain.common.Gender;
 import com.project.sharehouse.domain.common.UserRole;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
     @Id
@@ -34,4 +34,15 @@ public class User {
     @Embedded
     private Address address; // 주소
 
+    @Builder
+    public User(Long id, String name, String userName, String password, String phoneNumber, Gender gender, UserRole userRole, Address address) {
+        this.id = id;
+        this.name = name;
+        this.userName = userName;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.userRole = userRole;
+        this.address = address;
+    }
 }
