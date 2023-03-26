@@ -1,6 +1,6 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const mappingPath = ['/members', '/commons', '/items', '/articles']
+const mappingPath = ['/members', '/commons', '/items', '/articles', '/signup']
 
 module.exports = function(app){
     app.use(

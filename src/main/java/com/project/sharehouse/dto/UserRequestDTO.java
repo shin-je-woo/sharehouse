@@ -1,7 +1,6 @@
 package com.project.sharehouse.dto;
 
 import com.project.sharehouse.domain.User;
-import com.project.sharehouse.domain.common.Address;
 import com.project.sharehouse.domain.common.Gender;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +29,7 @@ public class UserRequestDTO {
     @NotNull
     private Gender gender; //성별 [ MALE, FEMAILE ]
 
-    private Address address; // 주소
+    private String address; //주소
 
     public User toEntity() {
         return User.builder()

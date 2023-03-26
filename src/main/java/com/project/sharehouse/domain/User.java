@@ -1,6 +1,5 @@
 package com.project.sharehouse.domain;
 
-import com.project.sharehouse.domain.common.Address;
 import com.project.sharehouse.domain.common.Gender;
 import com.project.sharehouse.domain.common.UserRole;
 import lombok.*;
@@ -21,21 +20,20 @@ public class User {
 
     private String userName; //아이디
 
-    private String password; // 비밀번호
+    private String password; //비밀번호
 
-    private String phoneNumber; // 폰번호
+    private String phoneNumber; //폰번호
+
+    private String address; //주소
 
     @Enumerated(EnumType.STRING)
-    private Gender gender; // 성별 [ MALE, FEMAILE ]
+    private Gender gender; //성별 [ MALE, FEMAILE ]
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole; //권한 [ USER, ADMIN, SUPERVISOR ]
 
-    @Embedded
-    private Address address; // 주소
-
     @Builder
-    public User(Long id, String name, String userName, String password, String phoneNumber, Gender gender, UserRole userRole, Address address) {
+    public User(Long id, String name, String userName, String password, String phoneNumber, Gender gender, UserRole userRole, String address) {
         this.id = id;
         this.name = name;
         this.userName = userName;
