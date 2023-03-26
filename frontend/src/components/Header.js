@@ -25,7 +25,7 @@ function Header() {
     }
 
     return (
-        <Menu pointing secondary >
+        <Menu pointing secondary>
             <Menu.Item
                 name='블랑 소개'
                 active={activeItem === 'introduce'}
@@ -34,7 +34,7 @@ function Header() {
             <Menu.Menu position='left'>
                 <Dropdown item text='지점안내'>
                     <Dropdown.Menu>
-                        {dropdownOptions.map(({ key, text, value }) => (
+                        {dropdownOptions.map(({key, text, value}) => (
                             <Dropdown.Item
                                 key={key}
                                 name={value}
@@ -51,6 +51,13 @@ function Header() {
                 active={activeItem === 'event'}
                 onClick={handleItemClick}
             />
+            <Menu.Menu position='right'>
+                <Menu.Item
+                    name='LOGIN'
+                    active={activeItem === 'LOGIN'}
+                    onClick={() => window.location.href="/login"}
+                    />
+            </Menu.Menu>
         </Menu>
     );
 }
