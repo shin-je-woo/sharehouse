@@ -42,7 +42,7 @@ public class House {
 
     private String description; //하우스 설명
 
-    @OneToMany(mappedBy = "house", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "house", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Room> rooms = new ArrayList<>();
 
     @OneToMany(mappedBy = "house", fetch = FetchType.LAZY)
@@ -58,5 +58,11 @@ public class House {
         this.maintenancefee = maintenancefee;
         this.capacity = capacity;
         this.description = description;
+    }
+
+    //==연관관계 메서드==//
+    public void addRoom(Room room) {
+        rooms.add(room);
+        room.setHouse(this);
     }
 }

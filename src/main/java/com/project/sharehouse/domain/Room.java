@@ -1,9 +1,6 @@
 package com.project.sharehouse.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -22,13 +19,15 @@ public class Room {
 
     private String description; //방 설명
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "house_id")
     private House house;
 
     @Builder
-    public Room(String name, String description) {
+    public Room(String name, String description, House house) {
         this.name = name;
         this.description = description;
+        this.house = house;
     }
 }
