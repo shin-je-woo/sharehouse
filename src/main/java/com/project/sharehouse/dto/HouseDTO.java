@@ -7,9 +7,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.util.List;
 
 public class HouseDTO {
 
@@ -30,17 +29,18 @@ public class HouseDTO {
         @NotNull
         private BuildingType buildingType; //건물형태
 
-        @NotNull @Size(max = 99_999_999)
+        @NotNull @PositiveOrZero @Max(99_999_999)
         private Integer deposit; //보증금
 
-        @NotNull @Size(max = 9_999_999)
+        @NotNull @PositiveOrZero @Max(9_999_999)
         private Integer maintenancefee; //관리비
 
-        @NotNull @Size(max = 100)
+        @NotNull @PositiveOrZero @Max(100)
         private Integer capacity; //수용인원
 
         private String description; //하우스 설명
+
+        @NotNull @Size(min = 1, max = 10)
+        private List<RoomDTO> rooms;
     }
-
-
 }
