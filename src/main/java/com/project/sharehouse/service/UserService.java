@@ -1,8 +1,9 @@
 package com.project.sharehouse.service;
 
-import com.project.sharehouse.Repository.UserRepository;
 import com.project.sharehouse.domain.User;
-import com.project.sharehouse.exception.DuplUserException;
+import com.project.sharehouse.exception.BizException;
+import com.project.sharehouse.exception.ErrorCode;
+import com.project.sharehouse.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,10 +24,10 @@ public class UserService {
 
     private void getValidateDuplicateUser(User user) {
         if (!userRepository.findByUserName(user.getUserName()).isEmpty()) {
-            throw new DuplUserException("회원ID");
+            throw new BizException("중복된 회원ID가 존재합니다.", ErrorCode.EXIST_DUPL_VALUE);
         }
         if (!userRepository.findByPhoneNumber(user.getPhoneNumber()).isEmpty()) {
-            throw new DuplUserException("폰번호");
+            throw new BizException("중복된 폰번호가 존재합니다.", ErrorCode.EXIST_DUPL_VALUE);
         }
     }
 }

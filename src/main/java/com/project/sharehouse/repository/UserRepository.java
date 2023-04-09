@@ -1,4 +1,4 @@
-package com.project.sharehouse.Repository;
+package com.project.sharehouse.repository;
 
 import com.project.sharehouse.domain.User;
 import lombok.RequiredArgsConstructor;
