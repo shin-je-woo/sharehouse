@@ -64,6 +64,12 @@ function Header() {
             />
             <Menu.Menu position='right'>
                 <Menu.Item
+                    name='등록하기'
+                    active={activeItem === 'houses'}
+                    onClick={() => window.location.href="/houses"}
+                />
+
+                <Menu.Item
                     name='LOGIN'
                     active={activeItem === 'LOGIN'}
                     onClick={() => window.location.href="/login"}
