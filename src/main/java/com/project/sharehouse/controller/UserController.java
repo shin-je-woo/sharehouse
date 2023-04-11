@@ -1,4 +1,4 @@
-package com.project.sharehouse;
+package com.project.sharehouse.controller;
 
 import com.project.sharehouse.dto.UserRequestDTO;
 import com.project.sharehouse.exception.BizException;

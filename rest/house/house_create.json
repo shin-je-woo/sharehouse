@@ -1,0 +1,23 @@
+{
+  "name" : "하우스 이름",
+  "acceptedGender" : "MALE",
+  "address" : {
+    "addrRoad" : "도로명주소",
+    "addrDetail" : "상세주소"
+  },
+  "buildingType" : "MONO",
+  "deposit" : 1000000,
+  "maintenancefee" : 30000,
+  "capacity" : 10,
+  "description" : "하우스 설명",
+  "rooms" : [
+    {
+      "name" : "첫번째 방 이름",
+      "description" : "첫번째 방 설명"
+    },
+    {
+      "name" : "두번째 방 이름",
+      "description" : "두번째 방 설명"
+    }
+  ]
+}

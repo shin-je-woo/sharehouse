@@ -18,7 +18,7 @@ public class ApiControllerAdvice {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMehtodValidationExceptions(MethodArgumentNotValidException e) {
-        List<ErrorResponse.ErrorDetail> errorDetails = makeFieldErrorDetails(e);
+        List<ErrorResponse.ErrorDetail> errorDetails = makeFieldErrorDetails(e.getBindingResult());
         ErrorResponse errorResponse = makeErrorResponse(ErrorCode.INPUT_VALUE_INVALID, errorDetails);
         return ResponseEntity.ok()
                 .body(errorResponse);
@@ -37,7 +37,6 @@ public class ApiControllerAdvice {
     private ErrorResponse.ErrorDetail makeGlobalErrorDetails(Exception e) {
         return ErrorResponse.ErrorDetail.builder()
                 .field("globalError")
-                .value(null)
                 .reason(e.getMessage())
                 .build();
     }
@@ -47,7 +46,7 @@ public class ApiControllerAdvice {
          return bindingResult.getFieldErrors().parallelStream()
                 .map(error -> ErrorResponse.ErrorDetail.builder()
                         .field(error.getField())
-                        .value((String) error.getRejectedValue())
+                        .value(error.getRejectedValue())
                         .reason(error.getDefaultMessage())
                         .build())
                 .collect(Collectors.toList());

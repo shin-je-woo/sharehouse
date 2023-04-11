@@ -1,6 +1,6 @@
 package com.project.sharehouse.service;
 
-import com.project.sharehouse.Repository.UserRepository;
+import com.project.sharehouse.repository.UserRepository;
 import com.project.sharehouse.domain.User;
 import com.project.sharehouse.domain.common.Gender;
 import com.project.sharehouse.dto.UserRequestDTO;

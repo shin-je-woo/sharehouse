@@ -32,11 +32,11 @@ public class ErrorResponse {
     public static class ErrorDetail {
 
         private String field;
-        private String value;
+        private Object value;
         private String reason;
 
         @Builder
-        public ErrorDetail(String field, String value, String reason) {
+        public ErrorDetail(String field, Object value, String reason) {
             this.field = field;
             this.value = value;
             this.reason = reason;

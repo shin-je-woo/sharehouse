@@ -27,7 +27,7 @@ public class UserRequestDTO {
     private String phoneNumber; //폰번호
 
     @NotNull
-    private Gender gender; //성별 [ MALE, FEMAILE ]
+    private Gender gender; //성별
 
     private String address; //주소
 

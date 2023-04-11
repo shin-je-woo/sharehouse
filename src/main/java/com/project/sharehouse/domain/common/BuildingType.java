@@ -5,11 +5,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum Gender {
+public enum BuildingType {
 
-    MALE("남성"),
-    FEMALE("여성"),
-    BOTH("혼용");
+    MONO("단독주택"),
+    MULTI("다세대주택"),
+    APT("아파트"),
+    ETC("기타");
 
     private final String value;
 }
