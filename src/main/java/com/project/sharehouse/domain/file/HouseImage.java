@@ -17,7 +17,7 @@ public class HouseImage extends CmmFile {
     private String description;
 
     @Builder
-    private HouseImage(String originalFileName, String savedFileName, String extension, String size, String uploadDir, String description) {
+    private HouseImage(String originalFileName, String savedFileName, String extension, Long size, String uploadDir, String description) {
         super(originalFileName, savedFileName, extension, size, uploadDir);
         this.description = description;
     }

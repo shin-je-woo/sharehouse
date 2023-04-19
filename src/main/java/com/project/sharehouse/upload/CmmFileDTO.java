@@ -1,19 +1,10 @@
-package com.project.sharehouse.domain.file;
+package com.project.sharehouse.upload;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
 
-import javax.persistence.*;
-
-@Entity
 @Getter
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class CmmFile {
-
-    @Id
-    @GeneratedValue
-    @Column(name = "file_id")
-    private Long id;
+public class CmmFileDTO {
 
     private String originalFileName; //원본파일명
 
@@ -25,7 +16,8 @@ public abstract class CmmFile {
 
     private String uploadDir; //업로드경로
 
-     protected CmmFile(String originalFileName, String savedFileName, String extension, Long size, String uploadDir) {
+    @Builder
+    public CmmFileDTO(String originalFileName, String savedFileName, String extension, Long size, String uploadDir) {
         this.originalFileName = originalFileName;
         this.savedFileName = savedFileName;
         this.extension = extension;
