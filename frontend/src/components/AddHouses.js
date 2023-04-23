@@ -117,7 +117,7 @@ const AddHouses = () => {
                                    ref={refParam => inputRef = refParam}
                                    style={{display: "none"}}
                             />
-                            <img src={image.preview_URL}/>
+                            <img style={{width:"100%"}} src={image.preview_URL}/>
                             <Button style={{float:"right"}} color="blue" variant="contained" onClick={sendImageToServer}>
                                 업로드
                             </Button>
