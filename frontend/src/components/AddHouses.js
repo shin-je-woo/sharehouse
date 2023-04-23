@@ -1,10 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {Button, Form, Menu} from 'semantic-ui-react'
+import {Button, Dropdown, Form, Menu} from 'semantic-ui-react'
 import axios from "axios";
-
-
-
-
 
 
 const AddHouses = () => {
@@ -13,11 +9,26 @@ const AddHouses = () => {
     const [name, setName] = useState("");
     const [acceptedGender, setAcceptedGender] = useState("");
     const [address, setAddress] = useState("");
+    const [buildingType, setBuildingType] = useState("");
+    const dropdownOptions  = [
+        { key: 1,  value: "단독주택" },
+        { key: 2,  value: "다세대주택" },
+        { key: 3,  value: "기타" },
+        { key: 4,  value: "아파트" },
+    ]
+    const [maintenancefeeType, setMaintenancefeeType] = useState("");
+    const [maintenancefee, setMaintenancefee] = useState("");
+    const handleDropdownItemClick = (buildingType) => {
+        setBuildingType(buildingType);
+    };
    const handleClick = (menuName) => {
         setMenu(menuName);
     };
     const buttonClick = (gender) => {
         setAcceptedGender(gender);
+    };
+    const maintenancebuttonClick = (maintenancefeeType) => {
+        setMaintenancefeeType(maintenancefeeType);
     };
 
     const [image, setImage] = useState({
@@ -83,6 +94,9 @@ const AddHouses = () => {
                 name:name,
                 acceptedGender:acceptedGender,
                 address:address,
+                buildingType:buildingType,
+                maintenancefeeType:maintenancefeeType,
+                maintenancefee:maintenancefee,
             }),
         })
             .then(res => res.json())
@@ -128,7 +142,6 @@ const AddHouses = () => {
                                 미리보기
                             </Button>
 
-
                         </div>
                         <div style={{float:"right" , width:"50%" , padding: "10px 30px"}}>
                             <Form.Field>
@@ -138,17 +151,17 @@ const AddHouses = () => {
                             <Form.Field>
                                 <label htmlFor="name">수용 성별</label>
                                 <Button
-                                    label='남성'
+                                    label='남성전용'
                                     value='male'
                                     onClick={(e, data) => buttonClick(data.value)}
                                 />
                                 <Button
-                                    label='여성'
+                                    label='여성전용'
                                     value='female'
                                     onClick={(e, data) => buttonClick(data.value)}
                                 />
                                 <Button
-                                    label='혼성'
+                                    label='혼용'
                                     value='all'
                                     onClick={(e, data) => buttonClick(data.value)}
                                 />
@@ -156,6 +169,41 @@ const AddHouses = () => {
                             <Form.Field>
                                 <label htmlFor="address">주소</label>
                                 <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
+                            </Form.Field>
+                            <Form.Field>
+                                <label >건물 형태</label>
+                                <Dropdown placeholder='' search selection text={buildingType}>
+                                    <Dropdown.Menu>
+                                        {dropdownOptions.map(({key, value}) => (
+                                            <Dropdown.Item
+                                                key={key}
+                                                onClick={() => handleDropdownItemClick(value)}
+                                            >
+                                                {value}
+                                            </Dropdown.Item>
+                                        ))}
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </Form.Field>
+                            <Form.Field>
+                                <label htmlFor="name">관리비</label>
+                                <Button
+                                    label='1/N'
+                                    value='1N'
+                                    onClick={(e, data) => maintenancebuttonClick(data.value)}
+                                />
+                                <Button
+                                    label='고정관리비'
+                                    value='fix'
+                                    onClick={(e, data) => maintenancebuttonClick(data.value)}
+                                />
+                                <input type="text" id="> maintenancefee" value={maintenancefee} onChange={(e) => setMaintenancefee(e.target.value)} />
+                            </Form.Field>
+                            <Form.Field>
+                                <label htmlFor="rent">임대료</label>
+                                <input type="text" id="rent" value={address} onChange={(e) => setAddress(e.target.value)} />
+                                <label htmlFor="deposit">보증금</label>
+                                <input type="text" id="deposit" value={address} onChange={(e) => setAddress(e.target.value)} />
                             </Form.Field>
                             <Button onClick={() =>  handleClick("detail")}>다음</Button>
                         </div>
