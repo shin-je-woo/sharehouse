@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Dropdown, Form, Menu} from 'semantic-ui-react'
+import {Button,TextArea , Dropdown, Form, Menu} from 'semantic-ui-react'
 import axios from "axios";
 
 
@@ -16,8 +16,11 @@ const AddHouses = () => {
         { key: 3,  value: "기타" },
         { key: 4,  value: "아파트" },
     ]
-    const [maintenancefeeType, setMaintenancefeeType] = useState("");
-    const [maintenancefee, setMaintenancefee] = useState("");
+    const [maintenanceFeeType, setMaintenanceFeeType] = useState("");
+    const [maintenanceFee, setMaintenanceFee] = useState("");
+    const [rent, setRent] = useState("");
+    const [deposit, setDeposit] = useState("");
+    const [description, setDescription] = useState("");
     const handleDropdownItemClick = (buildingType) => {
         setBuildingType(buildingType);
     };
@@ -27,8 +30,8 @@ const AddHouses = () => {
     const buttonClick = (gender) => {
         setAcceptedGender(gender);
     };
-    const maintenancebuttonClick = (maintenancefeeType) => {
-        setMaintenancefeeType(maintenancefeeType);
+    const maintenanceButtonClick = (maintenanceFeeType) => {
+        setMaintenanceFeeType(maintenanceFeeType);
     };
 
     const [image, setImage] = useState({
@@ -95,8 +98,8 @@ const AddHouses = () => {
                 acceptedGender:acceptedGender,
                 address:address,
                 buildingType:buildingType,
-                maintenancefeeType:maintenancefeeType,
-                maintenancefee:maintenancefee,
+                maintenanceFeeType:maintenanceFeeType,
+                maintenanceFee:maintenanceFee,
             }),
         })
             .then(res => res.json())
@@ -190,20 +193,20 @@ const AddHouses = () => {
                                 <Button
                                     label='1/N'
                                     value='1N'
-                                    onClick={(e, data) => maintenancebuttonClick(data.value)}
+                                    onClick={(e, data) => maintenanceButtonClick(data.value)}
                                 />
                                 <Button
                                     label='고정관리비'
                                     value='fix'
-                                    onClick={(e, data) => maintenancebuttonClick(data.value)}
+                                    onClick={(e, data) => maintenanceButtonClick(data.value)}
                                 />
-                                <input type="text" id="> maintenancefee" value={maintenancefee} onChange={(e) => setMaintenancefee(e.target.value)} />
+                                <input type="text" id="> maintenanceFee" value={maintenanceFee} onChange={(e) => setMaintenanceFee(e.target.value)} />
                             </Form.Field>
                             <Form.Field>
                                 <label htmlFor="rent">임대료</label>
-                                <input type="text" id="rent" value={address} onChange={(e) => setAddress(e.target.value)} />
+                                <input type="text" id="rent" value={rent} onChange={(e) => setRent(e.target.value)} />
                                 <label htmlFor="deposit">보증금</label>
-                                <input type="text" id="deposit" value={address} onChange={(e) => setAddress(e.target.value)} />
+                                <input type="text" id="deposit" value={deposit} onChange={(e) => setDeposit(e.target.value)} />
                             </Form.Field>
                             <Button onClick={() =>  handleClick("detail")}>다음</Button>
                         </div>
@@ -212,9 +215,7 @@ const AddHouses = () => {
             {/*상세정보*/}
                 {menu === "detail" && (
                     <Form >
-                        <Form.Field>
-                            <label htmlFor="name">상세 정보</label>
-                        </Form.Field>
+                        <Form.Field  control={TextArea} label={"상세 정보"} value={description} onChange={(e) => setDescription(e.target.value)}/>
                             <Button onClick={() =>  handleClick("base")}>이전</Button>
                             <Button onClick={() =>  handleClick("rooms")}>다음</Button>
                     </Form>
